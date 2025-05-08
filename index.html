@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Animated Webpage</title>
+  <style>
+    /* General styles */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      color: #333;
+      transition: background 0.5s;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .intro {
+      font-size: 1.8rem;
+      color: #fff;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .wave {
+      display: inline-block;
+      animation: wave-animation 2s infinite;
+      transform-origin: 70% 70%;
+    }
+
+    /* Waving animation keyframes */
+    @keyframes wave-animation {
+      0% { transform: rotate(  0.0deg); }
+      10% { transform: rotate(14.0deg); }
+      20% { transform: rotate(-8.0deg); }
+      30% { transform: rotate(14.0deg); }
+      40% { transform: rotate(-4.0deg); }
+      50% { transform: rotate(10.0deg); }
+      60% { transform: rotate(  0.0deg); }
+      100% { transform: rotate( 0.0deg); }
+    }
+
+    /* Navigation Bar */
+    nav {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: white;
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      font-size: 1.2rem;
+      margin: 0 10px;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #444;
+    }
+
+    /* Section visibility */
+    .section {
+      display: none;
+    }
+
+    .active-section {
+      display: block;
+    }
+
+    .content {
+      padding: 2rem;
+    }
+
+    /* Scroll animation */
+    .scroll-section {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 3rem;
+    }
+
+    .box {
+      background: linear-gradient(145deg, #ffeaa7, #fab1a0); /* Default gradient */
+      border-radius: 20px;
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.25);
+      padding: 1.5rem;
+      margin: 1rem;
+      flex: 1 1 300px;
+      max-width: 30%;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease, transform 0.3s ease-in-out;
+      border: 2px solid #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .box img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 1rem;
+    }
+
+    .box.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Button styles */
+    .btn-container {
+      text-align: center;
+      margin: 2rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background: #444;
+      color: #fff;
+    }
+
+    .arrow {
+      font-size: 50px;
+      display: block;
+      text-align: center;
+      margin: 20px auto;
+      animation: bounce 2s infinite;
+      color: #555;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .scroll-section {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .box {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="#" id="homeLink">Home</a>
+    <a href="#" id="aboutLink">About</a>
+    <a href="#" id="contactLink">Contact</a>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="homeSection" class="section active-section">
+    <header>
+      <h1>🌈 Welcome to My Interactive Web Experience</h1>
+      <h2 class="intro">Hi, I'm Hellen <span class="wave">👋</span></h2>
+      <p>Enjoy animations, themes, and interactive content below!</p>
+    </header>
+
+    <div class="arrow">⬇</div>
+
+    <div class="btn-container" id="btnContainer">
+      <button id="changeBgBtn">🎨 Tap to Change Background</button>
+      <button id="saveThemeBtn">💾 Save Theme</button>
+      <button id="resetThemeBtn">🔄 Reset Theme</button>
+    </div>
+
+    <div class="content">
+      <p>Click the buttons above to interact with the page. Scroll down for animated content!</p>
+    </div>
+
+    <div class="scroll-section">
+      <div class="box">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Nature">
+        <h2>Nature Beauty</h2>
+        <p>🌿 Escape into the heart of nature where serenity whispers through every leaf.</p>
+        <p>🌄 Breathe in the crisp air and let your soul wander in the beauty of the wild.</p>
+        <p>🍃 Every tree tells a story, every breeze carries a secret.</p>
+        <p>🌺 Embrace the peace that only untouched nature can offer.</p>
+      </div>
+      <div class="box">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475" alt="Technology">
+        <h2>Future Tech</h2>
+        <p>💡 Step into a world where ideas become code, and code powers the future.</p>
+        <p>🔌 Technology weaves connections across continents in milliseconds.</p>
+        <p>🧠 From AI to robotics, innovation never sleeps—it evolves.</p>
+        <p>🌐 Discover the brilliance that shapes tomorrow, today.</p>
+      </div>
+      <div class="box">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" alt="City">
+        <h2>City Lights</h2>
+        <p>🌆 The city pulses with life—lights flicker, horns echo, dreams unfold.</p>
+        <p>🏙 A skyline carved by ambition, glowing with endless opportunity.</p>
+        <p>🚕 Every street corner hums with stories waiting to be discovered.</p>
+        <p>🌃 As night falls, the city awakens into a world of neon and noise.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+<section id="aboutSection" class="section">
+    <div class="content">
+      <h2>About Me</h2>
+      <p>Welcome to my interactive web experience! I am Hellen, a web enthusiast passionate about creating engaging and dynamic online experiences. Through this site, I aim to explore themes in technology, nature, and city life.</p>
+    </div>
+  
+    <div class="scroll-section">
+      <div class="box">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Nature">
+        <h2>Nature Beauty</h2>
+        <p>🌿 Escape into the heart of nature where serenity whispers through every leaf.</p>
+        <p>🌄 Breathe in the crisp air and let your soul wander in the beauty of the wild.</p>
+        <p>🍃 Every tree tells a story, every breeze carries a secret.</p>
+        <p>🌺 Embrace the peace that only untouched nature can offer.</p>
+      </div>
+      <div class="box">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475" alt="Technology">
+        <h2>Future Tech</h2>
+        <p>💡 Step into a world where ideas become code, and code powers the future.</p>
+        <p>🔌 Technology weaves connections across continents in milliseconds.</p>
+        <p>🧠 From AI to robotics, innovation never sleeps—it evolves.</p>
+        <p>🌐 Discover the brilliance that shapes tomorrow, today.</p>
+      </div>
+      <div class="box">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" alt="City">
+        <h2>City Lights</h2>
+        <p>🌆 The city pulses with life—lights flicker, horns echo, dreams unfold.</p>
+        <p>🏙 A skyline carved by ambition, glowing with endless opportunity.</p>
+        <p>🚕 Every street corner hums with stories waiting to be discovered.</p>
+        <p>🌃 As night falls, the city awakens into a world of neon and noise.</p>
+      </div>
+    </div>
+  </section>
+  
+
+ <!-- Contact Section -->
+<section id="contactSection" class="section">
+    <div class="content">
+      <h2>Contact Me</h2>
+      <p>If you'd like to get in touch, feel free to reach out:</p>
+      <ul>
+        <li>Email: hambayo78@gmail.com</li>
+        <li>Phone: +254745690779</li>
+        <li>LinkedIn: <a href="http://www.linkedin.com/in/hellen-ambayo-15284329b">Visit my profile</a></li>
+      </ul>
+      <img src="20241031_134427.jpg" alt="Contact Image" style="max-width: 100px; border-radius: 15px; margin-top: 20px;" />
+    </div>
+  </section>
+  
+
+  <footer>
+    <p>&copy; 2025 Interactive Web Project</p>
+  </footer>
+
+  <script>
+    const changeBgBtn = document.getElementById('changeBgBtn');
+    const saveThemeBtn = document.getElementById('saveThemeBtn');
+    const resetThemeBtn = document.getElementById('resetThemeBtn');
+    const body = document.body;
+
+    const homeLink = document.getElementById('homeLink');
+    const aboutLink = document.getElementById('aboutLink');
+    const contactLink = document.getElementById('contactLink');
+
+    const homeSection = document.getElementById('homeSection');
+    const aboutSection = document.getElementById('aboutSection');
+    const contactSection = document.getElementById('contactSection');
+
+    const colors = [
+      'linear-gradient(135deg, #f6d365 0%, #fda085 100%)',
+      'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
+      'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)',
+      'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)'
+    ];
+
+    let currentColorIndex = 0;
+
+    function changeBackground() {
+      currentColorIndex = (currentColorIndex + 1) % colors.length;
+      body.style.background = colors[currentColorIndex];
+    }
+
+    function saveTheme() {
+      localStorage.setItem('bgTheme', currentColorIndex);
+      alert('Theme saved!');
+    }
+
+    function resetTheme() {
+      localStorage.removeItem('bgTheme');
+      location.reload();
+    }
+
+    function applySavedTheme() {
+      const savedIndex = localStorage.getItem('bgTheme');
+      if (savedIndex !== null) {
+        currentColorIndex = parseInt(savedIndex);
+        body.style.background = colors[currentColorIndex];
+      }
+    }
+
+    function showSection(section) {
+      homeSection.classList.remove('active-section');
+      aboutSection.classList.remove('active-section');
+      contactSection.classList.remove('active-section');
+      section.classList.add('active-section');
+    }
+
+    homeLink.addEventListener('click', () => showSection(homeSection));
+    aboutLink.addEventListener('click', () => showSection(aboutSection));
+    contactLink.addEventListener('click', () => showSection(contactSection));
+
+    document.addEventListener('DOMContentLoaded', () => {
+      applySavedTheme();
+      showSection(homeSection); // On page load, display the home section
+    });
+
+    changeBgBtn.addEventListener('click', changeBackground);
+    saveThemeBtn.addEventListener('click', saveTheme);
+    resetThemeBtn.addEventListener('click', resetTheme);
+
+    // Scroll reveal animations for the boxes
+    window.addEventListener('scroll', function() {
+      const boxes = document.querySelectorAll('.box');
+      const triggerBottom = window.innerHeight / 5 * 4;
+
+      boxes.forEach(box => {
+        const boxTop = box.getBoundingClientRect().top;
+        if (boxTop < triggerBottom) {
+          box.classList.add('show');
+        } else {
+          box.classList.remove('show');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
